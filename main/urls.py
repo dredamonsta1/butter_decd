@@ -19,6 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('app.login.urls')), # And now we use the include function to pull in our first_app.urls...
-    url(r'^customer/', include('app.customer.urls')),
-    url(r'^trip/', include('app.customer.urls'))
+    url(r'^people/', include('app.customer.urls')),
+    # url(r'^cart/', include('app.cart.urls')),
+    # url(r'^product/', include('app.product.urls'))
 ]

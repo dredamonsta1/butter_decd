@@ -2,8 +2,11 @@
 from django.shortcuts import render, HttpResponse, redirect
   # the index function is called when root is visited
 def index(request):
-   response = "Hello, I am your first request!"
-   return HttpResponse(response)
+	context = {
+     "email" : "blog@gmail.com",
+     "name" : "mike"
+     }
+   	return render(request, "login/index.html", context)
 
 def my_butter(request):
 	response = "your personal page sir/mam"
