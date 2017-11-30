@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import mongoengine
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangotoolbox',
+    # "django_mongoengine",
 ]
 
 MIDDLEWARE = [
@@ -79,16 +82,75 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# MONGODB_DATABASES = {
+#     "default": {
+#         "name": test,
+#         "host": localhost,
+#         "password": '',
+#         "username": '',
+#         "tz_aware": True, # if you using timezones in django (USE_TZ = True)
+#     },
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'test',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 27017,
     }
 }
 
 
+DATABASES = {
+    'default': {
+        'ENGINE': '',
+    },
+}
+
+# SESSION_ENGINE = 'mongoengine.django.sessions' # optional
+
+# sqlite3 database for development***********************
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'Django.db.backends.pymongo',
+#     'NAME': 'test',
+#     'USER': '',
+#     'PASSWORD': '',
+#     'HOST': 'localhost',
+#     'PORT': 27017,
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
+
+
+_MONGODB_USER = 'mongouser'
+_MONGODB_PASSWD = 'password'
+_MONGODB_HOST = 'thehost'
+_MONGODB_NAME = 'thedb'
+_MONGODB_DATABASE_HOST = \
+    'mongodb://%s:%s@%s/%s' \
+    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
+
+mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
+
+
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
