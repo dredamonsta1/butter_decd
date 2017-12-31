@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render, HttpResponse, redirect
 import mongoengine
-
+# from mongoengine.django.auth import User
 # user = authenticate(username=username, password=password)
 # assert isinstance(user, mongoengine.django.auth.User)
 
@@ -14,5 +14,14 @@ def index(request):
    	return render(request, "login/index.html", context)
 
 def my_butter(request):
-	response = "your personal page sir/mam"
+	response = "this view is from def mybutter in login view"
 	return HttpResponse(response)
+
+
+def log_reg(request):
+	if request.method == "POST":
+		print "*"*20
+		print request.POST
+		print request.method
+		print "*"*20
+	return render(request, "login/sign_In.html")
