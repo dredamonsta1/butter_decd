@@ -9,7 +9,7 @@ import mongoengine
 def index(request):
 	context = {
      "email" : "blog@gmail.com",
-     "name" : "mike"
+     "name" : "first_name"
      }
    	return render(request, "login/index.html", context)
 
@@ -24,4 +24,4 @@ def log_reg(request):
 		print request.POST
 		print request.method
 		print "*"*20
-	return render(request, "login/sign_In.html")
+	return render(request, "login/index.html")
