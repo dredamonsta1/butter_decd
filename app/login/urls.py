@@ -6,3 +6,6 @@ urlpatterns = [
 	url(r'^butter_create$', views.log_reg)
 	    
   ]
+
+
+  
