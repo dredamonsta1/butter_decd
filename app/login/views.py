@@ -24,4 +24,4 @@ def log_reg(request):
 		print request.POST
 		print request.method
 		print "*"*20
-	return render(request, "login/index.html")
+	return render(request, "login/sign_in.html")
