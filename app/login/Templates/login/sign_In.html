@@ -24,6 +24,14 @@
        <input type="submit" value="submit">
       </form>
 
+      <form action="/butter_create" method="post">
+        {% csrf_token %}
+        <label for="your_name">Your name: </label>
+        <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+        <label for ="your_name"> password: </label>
+        <input type="submit" value="OK">
+      </form>
+
 
     </body>
   </html>
